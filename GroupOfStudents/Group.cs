@@ -23,6 +23,30 @@ namespace GroupOfStudents
 
         static Random random = new Random();
 
+        public static bool operator ==(Group obj1, Group obj2)
+        {
+            if(obj1.students.Count == obj2.students.Count)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator !=(Group obj1, Group obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        public override bool Equals(object o)
+        {
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
         // <summary>
         // Конструктор без параметров.
         // </summary>

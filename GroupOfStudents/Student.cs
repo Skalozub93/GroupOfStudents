@@ -15,11 +15,10 @@ namespace GroupOfStudents
         private int age;
         private string surname;
 
-        private DateTime dateBirthday;
 
         private string adress;
         private int phoneNumber;
-        private bool exam;
+        
 
         // <summary>
         // двусвязный список оценок студента
@@ -49,12 +48,77 @@ namespace GroupOfStudents
             this.age = age;
         }
 
+
+        public static bool operator ==(Student ob1, Student ob2)
+        {
+            if(ob1.GetAverageRate() == ob2.GetAverageRate() && ob1.name == ob2.name)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator !=(Student ob3, Student ob4)
+        {
+            if(ob3.GetAverageRate()!=ob4.GetAverageRate())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator >(Student obj1, Student obj2)
+        {
+            if(obj1.GetAverageRate() > obj2.GetAverageRate())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator <(Student obj1, Student obj2)
+        {
+            if (obj1.GetAverageRate() < obj2.GetAverageRate())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override bool Equals(object o)
+        {  
+            return true;  
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
+        }
+
         // <summary>
         // Запись имени студента
         // </summary>
         public void SetName(string name)
         {
-            this.name = name;
+            try
+            {
+                for (int i = 0; i < name.Length; i++)
+                {
+                    if ((name[i] >= 'A' && name[i] <= 'Z') ||
+                        (name[i] >= 'a' && name[i] <= 'z'))
+                    {
+                        this.name = name;
+                    }
+                    else
+                    {
+                        throw new Exception("Имя не может местить цифры!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         // <summary>
@@ -70,7 +134,25 @@ namespace GroupOfStudents
         // </summary>
         public void SetSurname(string surname)
         {
-          this.surname = surname;
+            try
+            {
+                for (int i = 0; i < surname.Length; i++)
+                {
+                    if ((surname[i] >= 'A' && surname[i] <= 'Z') ||
+                        (surname[i] >= 'a' && surname[i] <= 'z'))
+                    {
+                        this.surname = surname;
+                    }
+                    else
+                    {
+                        throw new Exception("Фамилия не может местить цифры!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
         }
 
         // <summary>
@@ -86,7 +168,23 @@ namespace GroupOfStudents
         // </summary>
         public void SetAge(int age)
         {
-            this.age = age;
+            try
+            {
+
+                if (age >= 17)
+                {
+                    this.age = age;
+                }
+                else
+                {
+                    throw new Exception("Студенту должно быть не менее 17 лет ");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            
         }
 
         // <summary>
@@ -133,7 +231,7 @@ namespace GroupOfStudents
         // <summary>
         // Свойство Записи экзамена студента
         // </summary>
-        public void SetExam()
+        public void SetExam(bool exam)
         {
             if (random.Next(0, 2) == 0)
                 exam = false;

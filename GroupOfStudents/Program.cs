@@ -11,11 +11,11 @@ namespace GroupOfStudents
         static void Main(string[] args)
         {
             Student s = new Student();
-            s.ShowRates();
-            Console.WriteLine(s.GetAverageRate());
-            s.AddHometaskRate(12);
-            s.ShowRates();
-            Console.WriteLine(s.GetAverageRate());
+
+            s.SetAge(18);
+
+            Console.WriteLine(s);
+             
         }
     }
 }
