@@ -11,17 +11,41 @@ namespace GroupOfStudents
     // <summary>
     // группа студентов представлена типом List 
     // </summary>
-    internal class Group
+    internal class Group : Student,ICloneable,IComparable<Group>
     {
         LinkedList<Student> students = new LinkedList<Student>();
         string nameGroup = "bu111";
         string nameSpecalizationGroup = "programmer";
         int numberSemester = 2;
-
-        static string[] name = { "Rodion", "Vladyslav", "Konstatyn", "Vytaliy", "Yuriy", "Nikolay", "Ekateryna", "Alyona", "Daria", "Aleksandra", "Anastasia", "Svetlana" };
-        static string[] surname = { "Shevchenko", "Vasilenko", "Ovcharenko", "Borisenko", "Tkachenko", "Fedorenko", "Jakovenko", "Pavlenko", "Ivashenko", "Sklyarenko", "Kravchenko", "Ponomarenko" };
-
         static Random random = new Random();
+
+        
+
+        public int CompareTo(Group anotherGroup)
+        {
+            return 0;
+
+        }
+
+        public Group NotDeepClones()
+        {
+            return (Group)this.MemberwiseClone();
+        }
+
+        public object Cloneable()
+        {
+            return new Group(this.students, this.nameGroup, this.nameSpecalizationGroup, this.numberSemester);
+        }
+
+        public Group(LinkedList<Student> students, string nameGroup, string nameSpecalizationGroup, int numberSemester)
+        {
+            this.students = students;
+            this.nameGroup = nameGroup;
+            this.nameSpecalizationGroup = nameSpecalizationGroup;
+            this.numberSemester = numberSemester;
+            
+        }
+
 
         public static bool operator ==(Group obj1, Group obj2)
         {
@@ -47,32 +71,9 @@ namespace GroupOfStudents
             return 0;
         }
 
-        // <summary>
-        // Конструктор без параметров.
-        // </summary>
-        public Group()
-        {
-
-            for (int i = 0; i < 11; i++)
-            {
-                Student s = new Student();
-                s.SetName(name[random.Next(0, 12)]);
-                s.SetSurname(surname[random.Next(0, 12)]);
-                s.SetAge(random.Next(16, 50));
-                // s.SetExam();
-                students.AddLast(s);
-                
-            }
-        }
-
-        public Group(int x)
-        {
-
-        }
-
-        // <summary>
-        // Конструктор копирования. Создаёт группу, точную копию другой группы.
-        // </summary>
+        /// <summary>
+        /// Конструктор копирования. Создаёт группу, точную копию другой группы.
+        /// </summary>
         public Group(Group g)
         {
             //countStudents = g.GetCountStudents();
@@ -82,9 +83,9 @@ namespace GroupOfStudents
             //this.numberSemester = g.numberSemester;
         }
 
-        // <summary>
-        // Свойство Названия Групы.
-        // </summary>
+        /// <summary>
+        /// Свойство Названия Групы.
+        /// </summary>
         public string NameOfGroup   
         {
             get { return nameGroup; }
@@ -92,53 +93,53 @@ namespace GroupOfStudents
            
         }
 
-        // <summary>
-        // Свойство Названия Специализации.
-        // </summary>
+        /// <summary>
+        /// Свойство Названия Специализации.
+        /// </summary>
         public string NameSpecalizationGroup
         {
             get { return NameSpecalizationGroup; }
             set { NameSpecalizationGroup = value; }
         }
 
-        // <summary>
-        // Свойство Номера семестра.
-        // </summary>
+        /// <summary>
+        /// Свойство Номера семестра.
+        /// </summary>
         public int NumberSemester
         {
             get { return numberSemester;}
             set { numberSemester = value; }
         }
 
-        // <summary>
-        // Свойство Количества студентов.
-        // </summary>
+        /// <summary>
+        /// Свойство Количества студентов.
+        /// </summary>
         public int CountStudents
         {
             get { return CountStudents; }
             set { CountStudents = value; }
         }
 
-        // <summary>
-        // Свойство Номера семестра.
-        // </summary>
+        /// <summary>
+        /// Свойство Номера семестра.
+        /// </summary>
         public int NumberOfSemester
         {
             get { return numberSemester; }
             set { numberSemester = value; }
         }
 
-        // <summary>
-        // Добавления Студента в группу
-        // </summary>
+        /// <summary>
+        /// Добавления Студента в группу
+        /// </summary>
         public void AddStudent(Student s)
         {
             students.AddLast(s);
         }
 
-        // <summary>
-        // Перевод студента в другую группу
-        // </summary>
+        /// <summary>
+        /// Перевод студента в другую группу
+        /// </summary>
         public void TransfereStudent(int index, Group destination)
         {
             if (index < 0 || index >= students.Count) return;
@@ -148,9 +149,9 @@ namespace GroupOfStudents
             students.Remove(s);
         }
 
-        // <summary>
-        // Удаления студента из группы
-        // </summary>
+        /// <summary>
+        /// Удаления студента из группы
+        /// </summary>
         public Student EliminationStudent()
         {
             // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл
@@ -199,7 +200,7 @@ namespace GroupOfStudents
         /// <summary>
         /// Вывод полной информации о группе и студенте
         /// </summary>
-        public void Print()
+        public override void Print()
         {
             Console.WriteLine("Name group: " + nameGroup);
             Console.WriteLine("Specialization group: " + nameSpecalizationGroup);

@@ -1,35 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
-    internal class Student
+    internal class Student : Person, ICloneable
     {
-        // <summary>
-        // приватные методы класса о студенте
-        // </summary>
-        private string name;
-        private int age;
-        private string surname;
 
-
-        private string adress;
-        private int phoneNumber;
-        
-
-        // <summary>
-        // двусвязный список оценок студента
-        // </summary>
         private LinkedList<int> hometasks = new LinkedList<int>();
+        private LinkedList<int> exams = new LinkedList<int>();
+
 
         static Random random = new Random();
 
-        // <summary>
-        // конструктор копирования
-        // </summary>
+        /// <summary>
+        /// Не глубокая копия
+        /// </summary>
+        /// <returns></returns>
+        public Student NotDeepClone()
+        {
+            return (Student)this.MemberwiseClone();
+        }
+
+        /// <summary>
+        /// Пользовательская копия
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new Student(this.Name, this.Surname, this.Lastname, this.Age, this.Adress, this.PhoneNumber, this.hometasks, this.exams );
+        }
+
+
+        /// <summary>
+        /// конструктор копирования
+        /// </summary>
         public Student()
         {
             int rates_count = random.Next(15, 30);
@@ -38,20 +46,27 @@ namespace GroupOfStudents
                 hometasks.AddLast(random.Next(1, 13));
             }
         }
-        // <summary>
-        // конструктор копирования
-        // </summary>
-        public Student(string surname, string name, int age)
-        {
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-        }
 
+        public Student(string name, string surname, string lastname, DateTime age) : base(name, surname, lastname, age) { }
+
+        public Student(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber) : base(name, surname, lastname, age, adress, phoneNumber) { }
+
+        public Student(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber, LinkedList<int> hometasks, LinkedList<int> exams)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Lastname = lastname;
+            this.Age = age;
+            this.Adress = adress;
+            this.PhoneNumber = phoneNumber;
+            this.hometasks = hometasks;
+            this.exams = exams;
+
+        }
 
         public static bool operator ==(Student ob1, Student ob2)
         {
-            if(ob1.GetAverageRate() == ob2.GetAverageRate() && ob1.name == ob2.name)
+            if (ob1.GetAverageRate() == ob2.GetAverageRate() && ob1.Name == ob2.Name)
             {
                 return true;
             }
@@ -60,7 +75,7 @@ namespace GroupOfStudents
 
         public static bool operator !=(Student ob3, Student ob4)
         {
-            if(ob3.GetAverageRate()!=ob4.GetAverageRate())
+            if (ob3.GetAverageRate()!=ob4.GetAverageRate())
             {
                 return true;
             }
@@ -69,7 +84,7 @@ namespace GroupOfStudents
 
         public static bool operator >(Student obj1, Student obj2)
         {
-            if(obj1.GetAverageRate() > obj2.GetAverageRate())
+            if (obj1.GetAverageRate() > obj2.GetAverageRate())
             {
                 return true;
             }
@@ -86,8 +101,8 @@ namespace GroupOfStudents
         }
 
         public override bool Equals(object o)
-        {  
-            return true;  
+        {
+            return true;
         }
 
         public override int GetHashCode()
@@ -95,142 +110,9 @@ namespace GroupOfStudents
             return 0;
         }
 
-        // <summary>
-        // Запись имени студента
-        // </summary>
-        public void SetName(string name)
-        {
-            try
-            {
-                for (int i = 0; i < name.Length; i++)
-                {
-                    if ((name[i] >= 'A' && name[i] <= 'Z') ||
-                        (name[i] >= 'a' && name[i] <= 'z'))
-                    {
-                        this.name = name;
-                    }
-                    else
-                    {
-                        throw new Exception("Имя не может местить цифры!");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        // <summary>
-        // Получение имени студента
-        // </summary>
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        // <summary>
-        // Запись фамилии студента
-        // </summary>
-        public void SetSurname(string surname)
-        {
-            try
-            {
-                for (int i = 0; i < surname.Length; i++)
-                {
-                    if ((surname[i] >= 'A' && surname[i] <= 'Z') ||
-                        (surname[i] >= 'a' && surname[i] <= 'z'))
-                    {
-                        this.surname = surname;
-                    }
-                    else
-                    {
-                        throw new Exception("Фамилия не может местить цифры!");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-        }
-
-        // <summary>
-        // Получение фамилии студента
-        // </summary>
-        public string GetSurname()
-        {
-            return this.surname;
-        }
-
-        // <summary>
-        // Запись возраста студента
-        // </summary>
-        public void SetAge(int age)
-        {
-            try
-            {
-
-                if (age >= 17)
-                {
-                    this.age = age;
-                }
-                else
-                {
-                    throw new Exception("Студенту должно быть не менее 17 лет ");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-            }
-            
-        }
-
-        // <summary>
-        // Получение возраста студента
-        // </summary>
-        public int GetAge()
-        {
-            return this.age;
-        }
-
-        // <summary>
-        // Запись адресса студента
-        // </summary>
-        public void SetAdress(string adress)
-        {
-            this.adress = adress;
-        }
-
-        // <summary>
-        // Получение адресса студента
-        // </summary>
-        public string GetAdress()
-        {
-            return this.adress;
-        }
-
-        // <summary>
-        // Запись номера телефона студента
-        // </summary>
-        public void SetPhoneNumber(int phoneNumber)
-        {
-           this.phoneNumber = phoneNumber;
-        }
-
-
-        // <summary>
-        // Получение номера телефона студента
-        // </summary>
-        public int GetPhoneNumber()
-        {
-            return this.phoneNumber;
-        }
-
-        // <summary>
-        // Свойство Записи экзамена студента
-        // </summary>
+        /// <summary>
+        /// Свойство Записи экзамена студента
+        /// </summary>
         public void SetExam(bool exam)
         {
             if (random.Next(0, 2) == 0)
@@ -238,9 +120,16 @@ namespace GroupOfStudents
             else exam = true;
         }
 
-        // <summary>
-        // Информация об оценках
-        // </summary>
+        public void SetHomeTask(bool hw)
+        {
+            if (random.Next(0, 2) == 0)
+                hw = false;
+            else hw= true;
+        }
+
+        /// <summary>
+        /// Информация об оценках
+        /// </summary>
         public double GetAverageRate()
         {
             double result = 0;
@@ -251,9 +140,9 @@ namespace GroupOfStudents
             return result / hometasks.Count;
         }
 
-        // <summary>
-        // Показ рейтинга студента
-        // </summary>
+        /// <summary>
+        /// Показ рейтинга студента
+        /// </summary>
         public void ShowRates()
         {
             foreach (var item in hometasks)
@@ -263,14 +152,14 @@ namespace GroupOfStudents
             Console.WriteLine();
         }
 
-        // <summary>
-        // Добавление оценки за домашнее задание
-        // </summary>
+        /// <summary>
+        /// Добавление оценки за домашнее задание
+        /// </summary>
         public void AddHometaskRate(int rate)
         {
             try
             {
-   
+
                 if (rate >= 1 && rate <= 12)
                 {
                     hometasks.AddLast(rate);
@@ -280,10 +169,24 @@ namespace GroupOfStudents
                     throw new Exception("Оценка не может быть меньше одного или больше двенадцати!");
                 }
             }
-            catch(Exception ex)
-                {
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Гендер
+        /// </summary>
+        public bool IsMale
+        {
+            get; set;
+        }
+
+
+        public override void Print()
+        {
+
         }
     }
 }
