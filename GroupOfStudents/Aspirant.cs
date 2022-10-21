@@ -21,12 +21,12 @@ namespace GroupOfStudents
             scientificTheme = "Сайт о паттернах проектирования";
         }
 
-        public Aspirant(string name, string surname, string lastname, DateTime age, string scientificTheme ) : base(name, surname, lastname, age)
+        public Aspirant(string name, string surname, string lastname, int age, string scientificTheme ) : base(name, surname, lastname, age)
         {
             this.scientificTheme = scientificTheme;
         }
 
-        public Aspirant(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber,string scientificTheme) : base(name, surname, lastname, age, adress, phoneNumber)
+        public Aspirant(string name, string surname, string lastname, int age, string adress, int phoneNumber,string scientificTheme) : base(name, surname, lastname, age, adress, phoneNumber)
         {
             this.scientificTheme = scientificTheme;
         }

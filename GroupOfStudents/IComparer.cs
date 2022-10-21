@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
-    internal interface ICloneable<T> where T : ICloneable<T>
+    internal interface IComparer
     {
-        T Clone();
     }
 }

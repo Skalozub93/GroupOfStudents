@@ -8,14 +8,17 @@ namespace GroupOfStudents
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Student s = new Student();
+            
+            BadStudent b = new BadStudent();
 
-            s.SetAge(18);
+            b.Name = "Vlad";
+            //Console.WriteLine(b.ProspalParu("YES"));
+            AvarageStudent av = new AvarageStudent();
+            b.Print();
 
-            Console.WriteLine(s);
-             
+            av.PassTheExam("No");
         }
     }
 }

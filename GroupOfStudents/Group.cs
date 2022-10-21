@@ -23,10 +23,30 @@ namespace GroupOfStudents
 
         public int CompareTo(Group anotherGroup)
         {
-            return 0;
+            if (this.nameGroup == anotherGroup.nameGroup)
+                return 1;
+            else
+                return -1;
 
         }
 
+        public class CompareGroupBySpecalization : IComparer<Group>
+        {
+            public  int Compare(Group a, Group b)
+            {
+                return a.nameSpecalizationGroup.CompareTo(b.nameSpecalizationGroup);
+            }   
+        }
+
+        public class CompareGroupBySemestr : IComparer<Group>
+        {
+
+            public int Compare(Group a, Group b)
+            {
+                return a.NumberSemester.CompareTo(b.NumberSemester);
+            }
+        }
+       
         public Group NotDeepClones()
         {
             return (Group)this.MemberwiseClone();

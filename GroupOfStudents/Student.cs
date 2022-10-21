@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,20 +8,53 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
-    internal class Student : Person, ICloneable
+
+    internal class Student : Person, ICloneable, IComparable<Student> 
     {
 
         private LinkedList<int> hometasks = new LinkedList<int>();
         private LinkedList<int> exams = new LinkedList<int>();
-
+ 
 
         static Random random = new Random();
 
         /// <summary>
-        /// Не глубокая копия
+        /// Сравнение студентов по имени 
         /// </summary>
+        /// <param name="other"></param>
         /// <returns></returns>
-        public Student NotDeepClone()
+        
+        public int CompareTo(Student other)
+        {
+            if(this.hometasks.Count > other.hometasks.Count)
+                return 1;
+            if (this.hometasks.Count < other.hometasks.Count)
+                return -1;
+            return 0;
+        }
+
+        public class CompareStudentByName : IComparer<Student>
+        {
+            public int Compare(Student a, Student b)
+            {
+                return a.Name.CompareTo(b.Name);
+            }
+        }
+       
+        public class CompareStudentBySurname : IComparer<Student>
+        {
+            public int Compare(Student a, Student b)
+            {
+                return a.Surname.CompareTo(b.Surname);
+            }
+        }
+
+
+            /// <summary>
+            /// Не глубокая копия
+            /// </summary>
+            /// <returns></returns>
+            public Student NotDeepClone()
         {
             return (Student)this.MemberwiseClone();
         }
@@ -47,11 +81,11 @@ namespace GroupOfStudents
             }
         }
 
-        public Student(string name, string surname, string lastname, DateTime age) : base(name, surname, lastname, age) { }
+        public Student(string name, string surname, string lastname, int age) : base(name, surname, lastname, age) { }
 
-        public Student(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber) : base(name, surname, lastname, age, adress, phoneNumber) { }
+        public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber) : base(name, surname, lastname, age, adress, phoneNumber) { }
 
-        public Student(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber, LinkedList<int> hometasks, LinkedList<int> exams)
+        public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber, LinkedList<int> hometasks, LinkedList<int> exams)
         {
             this.Name = name;
             this.Surname = surname;
@@ -113,11 +147,24 @@ namespace GroupOfStudents
         /// <summary>
         /// Свойство Записи экзамена студента
         /// </summary>
-        public void SetExam(bool exam)
+        public void AddExamRate(int rate)
         {
-            if (random.Next(0, 2) == 0)
-                exam = false;
-            else exam = true;
+            try
+            {
+
+                if (rate >= 1 && rate <= 12)
+                {
+                    hometasks.AddLast(rate);
+                }
+                else
+                {
+                    throw new Exception("Оценка не может быть меньше одного или больше двенадцати!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void SetHomeTask(bool hw)
@@ -186,7 +233,7 @@ namespace GroupOfStudents
 
         public override void Print()
         {
-
+            base.Print();
         }
     }
 }

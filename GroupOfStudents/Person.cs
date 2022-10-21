@@ -15,7 +15,7 @@ namespace GroupOfStudents
         private string name;
         private string surname;
         private string lastname;
-        private DateTime age;
+        private int age;
 
 
         private string adress;
@@ -33,7 +33,7 @@ namespace GroupOfStudents
         /// <param name="surname">Фамилия студента</param>
         /// <param name="lastname">Отчество студента</param>
         /// <param name="age">Возраст студента</param>
-        public Person(string name, string surname, string lastname, DateTime age)
+        public Person(string name, string surname, string lastname, int age)
         {
             this.name = name;
             this.surname = surname;
@@ -51,7 +51,7 @@ namespace GroupOfStudents
         /// <param name="age">Возраст студента</param>
         /// <param name="adress">Адресс студента</param>
         /// <param name="phoneNumber">Номер телефона студента</param>
-        public Person(string name, string surname, string lastname, DateTime age, string adress, int phoneNumber)
+        public Person(string name, string surname, string lastname, int age, string adress, int phoneNumber)
         {
             this.name = name;
             this.surname = surname;
@@ -85,7 +85,7 @@ namespace GroupOfStudents
             set { lastname = value; }
         }
 
-        public DateTime Age
+        public int Age
         {
             get { return age; }
             set { age = value; }
@@ -111,13 +111,15 @@ namespace GroupOfStudents
         }
 
         public virtual void Print()
-        {       
+        {
+           
             Console.WriteLine("Name : " + Name);
             Console.WriteLine("SurName : " + Surname);
             Console.WriteLine("LastName : " + Lastname);
             Console.WriteLine("Date of Birthday : " + Age);
             Console.WriteLine("Home Address : " + Adress);
             Console.WriteLine("Phone Number : " + PhoneNumber);
+            
         }
     }
 }

@@ -9,5 +9,13 @@ namespace GroupOfStudents
     internal class GoodStudent : Student
     {
 
+
+        public GoodStudent() : base()
+        { }
+
+        public override void Print()
+        {
+            base.Print();
+        }
     }
 }
