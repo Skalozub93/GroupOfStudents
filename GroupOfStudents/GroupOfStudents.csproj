@@ -48,7 +48,6 @@
     <Compile Include="BadStudent.cs" />
     <Compile Include="GoodStudent.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="IComparer.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
