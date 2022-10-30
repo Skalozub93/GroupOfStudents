@@ -6,19 +6,101 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
+
     internal class Program
-    {
+    {     
+
+        delegate void MyDelegateGroup(Group name, int num);
+    
+
         static void Main()
         {
+           
+           Student student = new Student();
+            SortedSet<Student> list = new SortedSet<Student>();
+          
             
-            BadStudent b = new BadStudent();
+            Group g = new Group(list, "ПУ111", "Программисты", 3);
+            Student a = new AvarageStudent();
+            Student b = new BadStudent();
+            Student c = new GoodStudent();
+            Student d = new Student();
+            Student e = new BadStudent();
 
-            b.Name = "Vlad";
-            //Console.WriteLine(b.ProspalParu("YES"));
-            AvarageStudent av = new AvarageStudent();
-            b.Print();
+            g.AddStudent(a);
+            g.AddStudent(b);
+            g.AddStudent(c);
+            g.AddStudent(d);
+            g.AddStudent(e);
 
-            av.PassTheExam("No");
-        }
+            g.Print();
+            Console.ReadLine();
+
+
+
+            MyDelegateGroup MDG = AddStudentDelegate;
+            
+            while(true)
+            {
+                Console.WriteLine("1 - добавить студента в группу");
+                Console.WriteLine("2 - удалить студента из группы");
+                Console.WriteLine("3 - посмотреть список студентов");
+                Console.WriteLine("0 - выход");
+                
+
+                string key = Console.ReadLine(); 
+                if(key == "1")
+                {
+                    MDG += AddStudentDelegate;
+                    MDG -= RemoveStudentDelegate;
+                    MDG -= ShowListStudentDelegate;
+                    MDG -= ExitStudentDelegate;
+                    MDG(g,1);
+                }
+                if(key == "2")
+                {
+                    MDG -= AddStudentDelegate;
+                    MDG += RemoveStudentDelegate;
+                    MDG -= ShowListStudentDelegate;
+                    MDG -= ExitStudentDelegate;
+                    MDG(g, 1);
+                }
+                if(key == "3")
+                {
+                    MDG -= AddStudentDelegate;
+                    MDG -= RemoveStudentDelegate;
+                    MDG += ShowListStudentDelegate;
+                    MDG -= ExitStudentDelegate;
+                    MDG(g, 1);
+                }
+                if(key == "0")
+                {
+                    MDG -= AddStudentDelegate;
+                    MDG -= RemoveStudentDelegate;
+                    MDG -= ShowListStudentDelegate;
+                    MDG += ExitStudentDelegate;
+                    MDG(g, 1);
+                }
+            }
+            void AddStudentDelegate(Group name, int num)
+            {
+                name.AddStudentOnValue(num);
+            }
+            void RemoveStudentDelegate(Group name, int num)
+            {
+                name.RemoveStudentOnValue(num);
+            }
+            void ShowListStudentDelegate(Group name, int num)
+            {
+                foreach (Student item in name)
+                {
+                    item.Print();
+                }
+            }
+            void ExitStudentDelegate(Group name, int num)
+            {
+                Environment.Exit(0);
+            }
+        }       
     }
 }

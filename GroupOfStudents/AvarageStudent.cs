@@ -13,6 +13,7 @@ namespace GroupOfStudents
         {        
             if (pass == "YES" ||pass == "yes"|| pass == "DA" || pass == "da")
             {
+                Console.WriteLine("Congratulations!");
                 Console.WriteLine("Rating has been added");
                 AddHometaskRate(10);
                 return true;

@@ -13,13 +13,17 @@ namespace GroupOfStudents
     // </summary>
     internal class Group : Student,ICloneable,IComparable<Group>
     {
-        LinkedList<Student> students = new LinkedList<Student>();
-        string nameGroup = "bu111";
-        string nameSpecalizationGroup = "programmer";
-        int numberSemester = 2;
+        SortedSet<Student> students = new SortedSet<Student>();
+        string nameGroup;
+        string nameSpecalizationGroup;
+        int numberSemester;
         static Random random = new Random();
 
-        
+
+        public MyEnumerator GetEnumerator()
+        {
+            return new MyEnumerator(students);
+        }
 
         public int CompareTo(Group anotherGroup)
         {
@@ -57,7 +61,7 @@ namespace GroupOfStudents
             return new Group(this.students, this.nameGroup, this.nameSpecalizationGroup, this.numberSemester);
         }
 
-        public Group(LinkedList<Student> students, string nameGroup, string nameSpecalizationGroup, int numberSemester)
+        public Group(SortedSet<Student> students, string nameGroup, string nameSpecalizationGroup, int numberSemester)
         {
             this.students = students;
             this.nameGroup = nameGroup;
@@ -153,9 +157,64 @@ namespace GroupOfStudents
         /// Добавления Студента в группу
         /// </summary>
         public void AddStudent(Student s)
-        {
-            students.AddLast(s);
+        {                   
+           students.Add(s);
         }
+
+        public void AddStudentOnValue(int add)
+        {
+
+            Student other = new Student();
+            try
+            {
+                if (add == 1)
+                {
+                    students.Add(other);
+                }
+                else
+                {
+                    throw new Exception("Вы ввели некорректное значение!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ошибка: {ex.Message}");
+            }
+        }
+
+        public void RemoveStudentOnValue(int rem)
+        {
+
+            Student other = new Student();
+            try
+            {
+                if (rem == 2)
+                {
+                    students.Remove(other);
+                }
+                else
+                {
+                    throw new Exception("Вы ввели некорректное значение!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"ошибка: {ex.Message}");
+            }
+        }
+
+        public void ShowListOfStudents()
+        {
+            foreach (var item in students)
+            {
+                AddStudentOnValue(1);
+                Console.WriteLine(item.Name);
+            }
+        }
+
+        
+
+
 
         /// <summary>
         /// Перевод студента в другую группу
