@@ -38,6 +38,15 @@ namespace GroupOfStudents
 
 
 
+            void AvtomatExamRate(Student s, EventAvtomat eA)
+            {
+                s.AddExamRate(eA.GetAvtomat());
+            }
+            void AvtomatExamsRateIfSleep(Student s, EventProspal eP)
+            {
+                Console.WriteLine("Не было на паре потому что: " + eP.OverSlept);
+            }
+            
             MyDelegateGroup MDG = AddStudentDelegate;
             
             while(true)

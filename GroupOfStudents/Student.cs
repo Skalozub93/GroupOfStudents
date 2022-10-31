@@ -8,6 +8,44 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
+    class EventProspal
+    {
+        public string OverSlept
+        {
+            get;
+            set;
+        }
+
+        public EventProspal(string word)
+        {
+            this.OverSlept = word;
+        }
+
+        public string WhyWasAbsent()
+        {
+            Console.WriteLine(OverSlept);
+            return OverSlept;
+        }
+    }
+
+    class EventAvtomat
+    {
+        public int RateOfExam 
+        {
+            get;
+            set; 
+        }
+
+        public EventAvtomat(int rateOfExam)
+        {
+            RateOfExam = rateOfExam;
+        }
+
+        public int GetAvtomat()
+        {
+            return RateOfExam;
+        }
+    }
 
     internal class Student : Person, ICloneable, IComparable<Student> 
     {
@@ -18,12 +56,17 @@ namespace GroupOfStudents
 
         static Random random = new Random();
 
+        public delegate void HandlerAvtomat(Student s, EventAvtomat eV);
+        public delegate void HandlerProspal(Student s, EventProspal eP);
+
+        public event HandlerAvtomat avtomat;
+        public event HandlerProspal prospal;
+
         /// <summary>
         /// Сравнение студентов по имени 
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
-        
         public int CompareTo(Student other)
         {
             if(this.hometasks.Count > other.hometasks.Count)
@@ -33,6 +76,10 @@ namespace GroupOfStudents
             return 0;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public class CompareStudentByName : IComparer<Student>
         {
             public int Compare(Student a, Student b)
@@ -40,7 +87,11 @@ namespace GroupOfStudents
                 return a.Name.CompareTo(b.Name);
             }
         }
-       
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public class CompareStudentBySurname : IComparer<Student>
         {
             public int Compare(Student a, Student b)
@@ -48,7 +99,6 @@ namespace GroupOfStudents
                 return a.Surname.CompareTo(b.Surname);
             }
         }
-
 
             /// <summary>
             /// Не глубокая копия
