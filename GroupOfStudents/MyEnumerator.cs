@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
+    /// <summary>
+    /// Интерфейс "Перечеслитель"
+    /// </summary>
     internal class MyEnumerator
     {   
         /// <summary>
-        /// 
+        /// Поле с обобщённым типом студентов
         /// </summary>
         SortedSet<Student> massive;
 
         /// <summary>
-        /// 
+        /// Конструктор копирования
         /// </summary>
         /// <param name="massive"></param>
         public MyEnumerator(SortedSet<Student> massive)
@@ -23,7 +26,7 @@ namespace GroupOfStudents
         }
 
         /// <summary>
-        /// 
+        /// Базовый метод Счётчик
         /// </summary>
         public object Current
         {
@@ -32,11 +35,12 @@ namespace GroupOfStudents
         }
 
         /// <summary>
-        /// 
+        /// Поле индекс 
         /// </summary>
         int index;
+
         /// <summary>
-        /// 
+        /// Метод для передвежения числителя
         /// </summary>
         /// <returns></returns>
         public bool MoveNext()
@@ -49,7 +53,7 @@ namespace GroupOfStudents
             return true;
         }
         /// <summary>
-        /// 
+        /// Метод сброса
         /// </summary>
         public void Reset()
         {

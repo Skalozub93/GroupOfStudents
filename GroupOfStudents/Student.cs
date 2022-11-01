@@ -47,15 +47,23 @@ namespace GroupOfStudents
         }
     }
 
+    /// <summary>
+    /// Класс Студент
+    /// </summary>
     internal class Student : Person, ICloneable, IComparable<Student> 
     {
-
+        /// <summary>
+        /// Лист домашних заданий
+        /// </summary>
         private LinkedList<int> hometasks = new LinkedList<int>();
+        /// <summary>
+        /// Лист экзаменов
+        /// </summary>
         private LinkedList<int> exams = new LinkedList<int>();
  
 
         static Random random = new Random();
-
+        
         public delegate void HandlerAvtomat(Student s, EventAvtomat eV);
         public delegate void HandlerProspal(Student s, EventProspal eP);
 
@@ -63,7 +71,7 @@ namespace GroupOfStudents
         public event HandlerProspal prospal;
 
         /// <summary>
-        /// Сравнение студентов по имени 
+        /// Сравнение студентов по оценкам за домашнее задание 
         /// </summary>
         /// <param name="other"></param>
         /// <returns></returns>
@@ -78,7 +86,7 @@ namespace GroupOfStudents
 
 
         /// <summary>
-        /// 
+        /// Сравнение студентов по имени
         /// </summary>
         public class CompareStudentByName : IComparer<Student>
         {
@@ -90,7 +98,7 @@ namespace GroupOfStudents
 
 
         /// <summary>
-        /// 
+        /// Сравнение студентов по фамилии
         /// </summary>
         public class CompareStudentBySurname : IComparer<Student>
         {
@@ -130,11 +138,37 @@ namespace GroupOfStudents
                 hometasks.AddLast(random.Next(1, 13));
             }
         }
-
+        /// <summary>
+        /// Конструктор копирования 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="age"></param>
         public Student(string name, string surname, string lastname, int age) : base(name, surname, lastname, age) { }
 
+        /// <summary>
+        /// конструктор копирования с ссылкой на базовый тип
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="age"></param>
+        /// <param name="adress"></param>
+        /// <param name="phoneNumber"></param>
         public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber) : base(name, surname, lastname, age, adress, phoneNumber) { }
 
+        /// <summary>
+        /// Конструктор копирования со всеми параметрами
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="age"></param>
+        /// <param name="adress"></param>
+        /// <param name="phoneNumber"></param>
+        /// <param name="hometasks"></param>
+        /// <param name="exams"></param>
         public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber, LinkedList<int> hometasks, LinkedList<int> exams)
         {
             this.Name = name;
@@ -148,6 +182,12 @@ namespace GroupOfStudents
 
         }
 
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="ob1"></param>
+        /// <param name="ob2"></param>
+        /// <returns></returns>
         public static bool operator ==(Student ob1, Student ob2)
         {
             if (ob1.GetAverageRate() == ob2.GetAverageRate() && ob1.Name == ob2.Name)
@@ -157,6 +197,12 @@ namespace GroupOfStudents
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="ob3"></param>
+        /// <param name="ob4"></param>
+        /// <returns></returns>
         public static bool operator !=(Student ob3, Student ob4)
         {
             if (ob3.GetAverageRate()!=ob4.GetAverageRate())
@@ -166,6 +212,12 @@ namespace GroupOfStudents
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
         public static bool operator >(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRate() > obj2.GetAverageRate())
@@ -175,6 +227,12 @@ namespace GroupOfStudents
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
         public static bool operator <(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRate() < obj2.GetAverageRate())
@@ -280,7 +338,9 @@ namespace GroupOfStudents
             get; set;
         }
 
-
+        /// <summary>
+        /// Распечатка информации
+        /// </summary>
         public override void Print()
         {
             base.Print();

@@ -9,22 +9,42 @@ using GroupOfStudents;
 namespace GroupOfStudents
 {
     // <summary>
-    // группа студентов представлена типом List 
+    // Класс группа
     // </summary>
     internal class Group : Student,ICloneable,IComparable<Group>
     {
+        /// <summary>
+        /// SortedSet студентов
+        /// </summary>
         SortedSet<Student> students = new SortedSet<Student>();
+        /// <summary>
+        /// Название группы
+        /// </summary>
         string nameGroup;
+        /// <summary>
+        /// Специализация группы
+        /// </summary>
         string nameSpecalizationGroup;
+        /// <summary>
+        /// Номер семестра
+        /// </summary>
         int numberSemester;
+
         static Random random = new Random();
 
-
+        /// <summary>
+        /// Реализация интерфейса Enumerator для "прохода" по коллекции
+        /// </summary>
+        /// <returns></returns>
         public MyEnumerator GetEnumerator()
         {
             return new MyEnumerator(students);
         }
-
+        /// <summary>
+        /// Сравнение групп по названию
+        /// </summary>
+        /// <param name="anotherGroup"></param>
+        /// <returns></returns>
         public int CompareTo(Group anotherGroup)
         {
             if (this.nameGroup == anotherGroup.nameGroup)
@@ -33,7 +53,9 @@ namespace GroupOfStudents
                 return -1;
 
         }
-
+        /// <summary>
+        /// Сравнение группы по названию специализации
+        /// </summary>
         public class CompareGroupBySpecalization : IComparer<Group>
         {
             public  int Compare(Group a, Group b)
@@ -41,7 +63,9 @@ namespace GroupOfStudents
                 return a.nameSpecalizationGroup.CompareTo(b.nameSpecalizationGroup);
             }   
         }
-
+        /// <summary>
+        /// Сравнение группы по номеру семестра
+        /// </summary>
         public class CompareGroupBySemestr : IComparer<Group>
         {
 
@@ -50,17 +74,31 @@ namespace GroupOfStudents
                 return a.NumberSemester.CompareTo(b.NumberSemester);
             }
         }
-       
+        /// <summary>
+        /// Не глубокая копия группы
+        /// </summary>
+        /// <returns></returns>
         public Group NotDeepClones()
         {
             return (Group)this.MemberwiseClone();
         }
 
+        /// <summary>
+        /// Полная копия группы
+        /// </summary>
+        /// <returns></returns>
         public object Cloneable()
         {
             return new Group(this.students, this.nameGroup, this.nameSpecalizationGroup, this.numberSemester);
         }
 
+        /// <summary>
+        /// конструктор копирования 
+        /// </summary>
+        /// <param name="students"></param>
+        /// <param name="nameGroup"></param>
+        /// <param name="nameSpecalizationGroup"></param>
+        /// <param name="numberSemester"></param>
         public Group(SortedSet<Student> students, string nameGroup, string nameSpecalizationGroup, int numberSemester)
         {
             this.students = students;
@@ -70,7 +108,12 @@ namespace GroupOfStudents
             
         }
 
-
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
         public static bool operator ==(Group obj1, Group obj2)
         {
             if(obj1.students.Count == obj2.students.Count)
@@ -80,6 +123,12 @@ namespace GroupOfStudents
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения, сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"></param>
+        /// <param name="obj2"></param>
+        /// <returns></returns>
         public static bool operator !=(Group obj1, Group obj2)
         {
             return !(obj1 == obj2);
@@ -161,6 +210,10 @@ namespace GroupOfStudents
            students.Add(s);
         }
 
+        /// <summary>
+        ///  Добавление студента в группу по номеру
+        /// </summary>
+        /// <param name="add"></param>
         public void AddStudentOnValue(int add)
         {
 
@@ -182,6 +235,10 @@ namespace GroupOfStudents
             }
         }
 
+        /// <summary>
+        /// Удаление студента из группы по номеру
+        /// </summary>
+        /// <param name="rem"></param>
         public void RemoveStudentOnValue(int rem)
         {
 
@@ -203,6 +260,9 @@ namespace GroupOfStudents
             }
         }
 
+        /// <summary>
+        ///  Показ всех студентов группы
+        /// </summary>
         public void ShowListOfStudents()
         {
             foreach (var item in students)
@@ -211,9 +271,6 @@ namespace GroupOfStudents
                 Console.WriteLine(item.Name);
             }
         }
-
-        
-
 
 
         /// <summary>

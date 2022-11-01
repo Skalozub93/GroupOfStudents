@@ -7,20 +7,39 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
+    /// <summary>
+    /// Класс Персона
+    /// </summary>
     internal class Person
     {
         /// <summary>
-        /// приватные методы класса о студенте
+        /// Поле хранения имени о персоне
         /// </summary>
         private string name;
+        /// <summary>
+        /// Поле хранения фамилии о персоне
+        /// </summary>
         private string surname;
+        /// <summary>
+        /// Поле хранения отчества о персоне
+        /// </summary>
         private string lastname;
+        /// <summary>
+        /// Поле хранения возраста о персоне
+        /// </summary>
         private int age;
-
-
+        /// <summary>
+        /// Поле хранения адресса персоны
+        /// </summary>
         private string adress;
+        /// <summary>
+        /// Поле хранения номера телефона персоны
+        /// </summary>
         private int phoneNumber;
 
+        /// <summary>
+        /// Конструктор копирования без параметров
+        /// </summary>
         public Person()
         {
 
@@ -42,15 +61,15 @@ namespace GroupOfStudents
         }
 
 
-        // <summary>
-        /// Конструктор со всеми параметрами
+        /// <summary>
+        /// Конструктор копирования со всеми параметрами 
         /// </summary>
-        /// <param name="name">Имя студента</param>
-        /// <param name="surname">Фамилия студента</param>
-        /// <param name="lastname">Отчество студента</param>
-        /// <param name="age">Возраст студента</param>
-        /// <param name="adress">Адресс студента</param>
-        /// <param name="phoneNumber">Номер телефона студента</param>
+        /// <param name="name"></param>
+        /// <param name="surname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="age"></param>
+        /// <param name="adress"></param>
+        /// <param name="phoneNumber"></param>
         public Person(string name, string surname, string lastname, int age, string adress, int phoneNumber)
         {
             this.name = name;
@@ -79,12 +98,18 @@ namespace GroupOfStudents
             set { surname = value; }
         }
 
+        /// <summary>
+        /// Запись Отчества персоны
+        /// </summary>
         public string Lastname
         {
             get { return lastname; }
             set { lastname = value; }
         }
 
+        /// <summary>
+        /// Запись возраста персоны
+        /// </summary>
         public int Age
         {
             get { return age; }
@@ -110,6 +135,9 @@ namespace GroupOfStudents
             set { phoneNumber = value; }
         }
 
+        /// <summary>
+        /// Вывод информации о персоне
+        /// </summary>
         public virtual void Print()
         {
            

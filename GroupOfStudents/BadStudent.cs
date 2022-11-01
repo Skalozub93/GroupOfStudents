@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
+    /// <summary>
+    ///  Класс Плохой Студент
+    /// </summary>
     internal class BadStudent : Student
     {
 
-        
+        /// <summary>
+        /// Метод "Проспал пару"
+        /// </summary>
+        /// <param name="trues"></param>
+        /// <returns></returns>
         public bool ProspalParu(string trues)
         {
             if (trues == "YES" ||trues == "yes"|| trues == "DA" || trues == "da")
@@ -20,9 +27,14 @@ namespace GroupOfStudents
             return true;
         }
 
+        /// <summary>
+        /// Конструктор копирования с ссылкой на базовый тип
+        /// </summary>
         public BadStudent() : base()
         { }
-
+        /// <summary>
+        /// Вывод информации
+        /// </summary>
         public override void Print()
         {  
             base.Print();
