@@ -55,11 +55,11 @@ namespace GroupOfStudents
         /// <summary>
         /// Лист домашних заданий
         /// </summary>
-        private LinkedList<int> hometasks = new LinkedList<int>();
+        private SortedSet<int> hometasks = new SortedSet<int>();
         /// <summary>
         /// Лист экзаменов
         /// </summary>
-        private LinkedList<int> exams = new LinkedList<int>();
+        private SortedSet<int> exams = new SortedSet<int>();
  
 
         static Random random = new Random();
@@ -135,7 +135,7 @@ namespace GroupOfStudents
             int rates_count = random.Next(15, 30);
             for (int i = 0; i < rates_count; i++)
             {
-                hometasks.AddLast(random.Next(1, 13));
+                hometasks.Add(random.Next(1, 13));
             }
         }
         /// <summary>
@@ -169,7 +169,7 @@ namespace GroupOfStudents
         /// <param name="phoneNumber"></param>
         /// <param name="hometasks"></param>
         /// <param name="exams"></param>
-        public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber, LinkedList<int> hometasks, LinkedList<int> exams)
+        public Student(string name, string surname, string lastname, int age, string adress, int phoneNumber, SortedSet<int> hometasks, SortedSet<int> exams)
         {
             this.Name = name;
             this.Surname = surname;
@@ -262,7 +262,7 @@ namespace GroupOfStudents
 
                 if (rate >= 1 && rate <= 12)
                 {
-                    hometasks.AddLast(rate);
+                    hometasks.Add(rate);
                 }
                 else
                 {
@@ -317,7 +317,7 @@ namespace GroupOfStudents
 
                 if (rate >= 1 && rate <= 12)
                 {
-                    hometasks.AddLast(rate);
+                    hometasks.Add(rate);
                 }
                 else
                 {

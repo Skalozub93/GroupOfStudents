@@ -1,0 +1,16 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="namespace_group_of_students.html"><param name="Name" value="GroupOfStudents"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_event_avtomat.html"><param name="Name" value="GroupOfStudents::EventAvtomat"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_event_prospal.html"><param name="Name" value="GroupOfStudents::EventProspal"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_group_1_1_compare_group_by_semestr.html"><param name="Name" value="GroupOfStudents::Group::CompareGroupBySemestr"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_group_1_1_compare_group_by_specalization.html"><param name="Name" value="GroupOfStudents::Group::CompareGroupBySpecalization"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_student_1_1_compare_student_by_name.html"><param name="Name" value="GroupOfStudents::Student::CompareStudentByName"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="class_group_of_students_1_1_student_1_1_compare_student_by_surname.html"><param name="Name" value="GroupOfStudents::Student::CompareStudentBySurname"></OBJECT>
+</UL>
+</BODY>
+</HTML>

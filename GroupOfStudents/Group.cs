@@ -8,9 +8,9 @@ using GroupOfStudents;
 
 namespace GroupOfStudents
 {
-    // <summary>
-    // Класс группа
-    // </summary>
+    /// <summary>
+    /// Класс группа
+    /// </summary>
     internal class Group : Student,ICloneable,IComparable<Group>
     {
         /// <summary>
@@ -53,6 +53,14 @@ namespace GroupOfStudents
                 return -1;
 
         }
+
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        public Group()
+        {
+
+        }
         /// <summary>
         /// Сравнение группы по названию специализации
         /// </summary>
@@ -92,6 +100,7 @@ namespace GroupOfStudents
             return new Group(this.students, this.nameGroup, this.nameSpecalizationGroup, this.numberSemester);
         }
 
+  
         /// <summary>
         /// конструктор копирования 
         /// </summary>

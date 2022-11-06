@@ -146,7 +146,7 @@ namespace GroupOfStudents
             Console.WriteLine("LastName : " + Lastname);
             Console.WriteLine("Date of Birthday : " + Age);
             Console.WriteLine("Home Address : " + Adress);
-            Console.WriteLine("Phone Number : " + PhoneNumber);
+            Console.WriteLine("Phone of Number : " + PhoneNumber);
             
         }
     }
