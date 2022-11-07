@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroupOfStudents
 {
-
+    [AuthorAttribute]
     internal class Program
     {     
 
@@ -21,15 +21,7 @@ namespace GroupOfStudents
             fs.SaveStudentToFile(s);
 
             Group g = new Group();
-
-         
-           
-
-            
-            
-             
-            
-
+      
 
 
         }       

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspirant.cs" />
+    <Compile Include="AuthorAttribute.cs" />
     <Compile Include="AvarageStudent.cs" />
     <Compile Include="BadStudent.cs" />
     <Compile Include="FileSaver.cs" />

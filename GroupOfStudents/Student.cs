@@ -47,6 +47,7 @@ namespace GroupOfStudents
         }
     }
 
+    [Author]
     /// <summary>
     /// Класс Студент
     /// </summary>

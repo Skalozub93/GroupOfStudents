@@ -8,6 +8,7 @@ using GroupOfStudents;
 
 namespace GroupOfStudents
 {
+    [Author]
     /// <summary>
     /// Класс группа
     /// </summary>
